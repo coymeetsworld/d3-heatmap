@@ -3,3 +3,25 @@ body {
 	color: white;
 }
 
+path, line {
+	fill: none;
+	stroke: #fff;
+}
+
+.chart {
+	display: block;
+	margin: 0 auto;
+	padding: 100px 100px 100px 100px;
+	margin-top: 50px;
+	margin-bottom: 200px;
+	border: 1px solid white;
+}
+.chart text {
+	fill: white;
+	font: 10px sans-serif;
+}
+.chart text.axisLabel {
+	fill: white;
+	font: 18px sans-serif;
+	text-anchor: middle;
+}
