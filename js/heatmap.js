@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 	function buildXAxis(x) {
 		chart.append("g")
 				 .attr("transform", "translate(0," + chartHeight + ")")
@@ -44,11 +46,14 @@ $(document).ready(function() {
 		x.domain(d3.extent(heatData.monthlyVariance, function(d) { return d.year; }) );
 		console.log(d3.extent(heatData.monthlyVariance, function(d) { return d.year; }) );
 		buildXAxis(x);
-		
+
 		var baseTemp = heatData.baseTemperature;
 		//for (var i = 0; i < heatData.monthlyVariance.length; i++) {
-		for (var i = 0; i < 10; i++) {
-			console.log(heatData.monthlyVariance[i]);
+		for (var i = 0; i < 15; i++) {
+			var year = heatData.monthlyVariance[i].year;
+			var month = monthNames[heatData.monthlyVariance[i].month-1];
+			var temp = baseTemp + heatData.monthlyVariance[i].variance
+			console.log(month + " " + year + " " + temp);
 		}
 	});
 
