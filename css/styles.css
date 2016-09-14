@@ -11,9 +11,9 @@ path, line {
 .chart {
 	display: block;
 	margin: 0 auto;
-	padding: 100px 100px 100px 100px;
+	padding: 100px;
+	margin-bottom: 100px;
 	margin-top: 50px;
-	margin-bottom: 200px;
 	border: 1px solid white;
 }
 .chart text {
@@ -24,4 +24,38 @@ path, line {
 	fill: white;
 	font: 18px sans-serif;
 	text-anchor: middle;
+}
+
+.gradient11 {
+	fill: #821a79;
+}
+.gradient10 {
+	fill: #5b1a8a;
+}
+.gradient9 {
+	fill: #231a91;
+}
+.gradient8 {
+	fill: #195098;
+}
+.gradient7 {
+	fill: #18989f;
+}
+.gradient6 {
+	fill: #17a765;
+}
+.gradient5 {
+	fill: #16ae1b;
+}
+.gradient4 {
+	fill: #61b515;
+}
+.gradient3 {
+	fill: #babc13;
+}
+.gradient2 {
+	fill: #c36a11;
+}
+.gradient1 {
+	fill: #cb1012;
 }
