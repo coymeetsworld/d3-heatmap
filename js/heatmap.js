@@ -2,13 +2,13 @@ $(document).ready(function() {
 
   var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var margin = {top: 20, right: 30, bottom: 30, left: 40}
-	var chartWidth = 1200;
-	var chartHeight = 600;
+	var chartWidth = 1270 - margin.left - margin.right;
+	var chartHeight = 650 - margin.top - margin.bottom;
 	var x = d3.scaleLinear().range([0, chartWidth]);
 	var y = d3.scaleTime().domain([new Date(2016,11,31), new Date(2016,0,1)]).range([chartHeight, 0]);
 	var chart = d3.select('.chart')
-								.attr("width", 1200+margin.left+margin.right)
-								.attr("height", 600+margin.top+margin.bottom)
+								.attr("width", chartWidth+margin.left+margin.right)
+								.attr("height", chartHeight+margin.top+margin.bottom)
 								.append("g")
 								.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -64,18 +64,18 @@ $(document).ready(function() {
 		if (error) throw error;
 
 		x.domain(d3.extent(heatData.monthlyVariance, function(d) { return d.year; }) );
-		//x.domain([1753,2016]);
-		console.log(d3.extent(heatData.monthlyVariance, function(d) { return d.year; }) );
+		//console.log("Range: " + d3.extent(heatData.monthlyVariance, function(d) { return d.year; }) );
 
 		console.log("Number of cells: " + heatData.monthlyVariance.length);
 		var baseTemp = heatData.baseTemperature;
 		var numYears = Math.ceil(heatData.monthlyVariance.length/12);
-		//var numYears = heatData.monthlyVariance.length/12;
 		console.log("Years: " + numYears);
-		var cellWidth = (chartWidth+margin.left+margin.right)/numYears;
-		var cellHeight = (chartHeight+margin.top+margin.bottom)/12;
-		console.log("chartWidth: " + chartWidth);
+		var cellWidth = (chartWidth)/numYears;
+		var cellHeight = (chartHeight)/12;
+		console.log("chartWidth: " + (chartWidth));
 		console.log("cell width: "+ cellWidth);
+		console.log("chart height: " + (chartHeight));
+		console.log("cell height: "+ cellHeight);
 
 		var cards = chart.selectAll("g")
 									 .data(heatData.monthlyVariance)
