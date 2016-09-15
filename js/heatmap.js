@@ -95,9 +95,47 @@ $(document).ready(function() {
 									 	 .attr("class", function(d) { return getGridColor(baseTemp + d.variance); })
 									 	 .attr("width", cellWidth)
 									 	 .on("mouseover", function() {
-										 	 console.log(d3.select(this).datum());
-									 	 });
-											
+												console.log(d3.select(this).datum());
+												var cellData = d3.select(this).datum();
+												d3.select(this).attr('class', 'highlight');
+
+												var xPos = parseFloat(d3.select(this).attr("x"));
+												var yPos = parseFloat(d3.select(this).attr("y"));
+
+												chart.append('rect')
+													.attr('class', 'tip')
+													.attr('x', xPos - 90)
+													.attr('y', yPos - 60)
+													.attr('rx', 3)
+													.attr('ry', 3)
+													.attr('width', 150)
+													.attr('height', 75)
+													.style({
+														'fill': 'rgba(0,0,0,0.9)',
+														'border': '2px solid #fff'
+													});
+												chart.append('text')
+													.attr('class','tip')
+													.html(
+														"<tspan x=" + (xPos-80) + " y=" + (yPos-30) + " class=\"tooltipDate\">" + cellData.year + " - " + monthNames[cellData.month] + "</tspan>"
+														+ "<tspan x=" + (xPos-80) + " y=" + (yPos-5) + " class=\"tooltipTemperature\">" 
+															+ (baseTemp + cellData.variance).toFixed(3) + "&deg;C&nbsp;&nbsp;( " + 
+															+ cellData.variance.toFixed(3)
+														+ " )</tspan>")
+													.attr('x', xPos - 85)
+													.attr('y', yPos - 30)
+													.style({
+														fill: "#fff",
+														'font-weight': 'bold',
+														'font-size': '1.2em'
+													});
+
+									 	 })
+										 .on('mouseout', function(d) {
+											 chart.selectAll('.tip').remove();
+										   d3.select(this).attr('class', function(d) { return getGridColor(baseTemp + d.variance); });
+										 });
+
 		buildXAxis(x);
 		buildYAxis(y);
 

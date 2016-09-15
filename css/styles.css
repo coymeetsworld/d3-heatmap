@@ -59,3 +59,14 @@ path, line {
 .gradient1 {
 	fill: #cb1012;
 }
+.highlight {
+	cursor: pointer;
+	fill: #fff;
+}
+.tooltipDate {
+	font-weight: bold;
+	font-size: 16px;
+}
+.tooltipTemperature {
+	font-size: 14px;
+}
