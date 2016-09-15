@@ -4,26 +4,35 @@ $(document).ready(function() {
 	var margin = {top: 20, right: 30, bottom: 30, left: 40}
 	var chartWidth = 1270 - margin.left - margin.right;
 	var chartHeight = 650 - margin.top - margin.bottom;
+
 	var x = d3.scaleLinear().range([0, chartWidth]);
 	var y = d3.scaleTime().domain([new Date(2016,11,31), new Date(2016,0,1)]).range([chartHeight, 0]);
-	var chart = d3.select('.chart')
+
+	var chart = d3.select('#chart')
 								.attr("width", chartWidth+margin.left+margin.right)
 								.attr("height", chartHeight+margin.top+margin.bottom)
 								.append("g")
 								.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+  /* 
+		Renders the x-axis of the graph with label.
+	*/
 	function buildXAxis(x) {
 		chart.append("g")
 				 .attr("transform", "translate(0," + chartHeight + ")")
 				 .call(d3.axisBottom(x));
 
-		//Add text label for x-axis
 		chart.append("text")
 				 .attr("transform", "translate(" + (chartWidth/2) + "," + (chartHeight+50) + ")")
 				 .attr("class", "axisLabel")
 				 .text("Years");
 	}
 
+
+  /*
+		Renders the y-axis of the graph with label.
+	*/
 	function buildYAxis(y) {
 		chart.append("g")
 				 .attr("transform", "translate(0,0)")
@@ -32,7 +41,6 @@ $(document).ready(function() {
 								 .tickSize(16,0)
 								 .tickFormat(d3.timeFormat("%B")));
 
-		//Add Text label for the y-axis
 		chart.append("text")
 				 .attr("transform", "rotate(-90)")
 				 .attr("y", -125)
@@ -42,7 +50,11 @@ $(document).ready(function() {
 				 .text("Months");
 	}
 
+	/* 
+		Returns the CSS class used to fill out a cell on the heatmap. CSS class depends on temp variable passed.
+	*/
 	function getGridColor(temp) {
+
 		if (temp <= 0) 					{ return "gradient11"; }
 		else if (temp <= 2.7) 	{ return "gradient10"; }
 		else if (temp <= 3.9) 	{ return "gradient9"; }
@@ -55,10 +67,6 @@ $(document).ready(function() {
 		else if (temp <= 11.6) 	{ return "gradient2"; }
 		else 										{ return "gradient1"; }
 	}
-
-
-	var colorCodes = ['#f00', '#00f'];
-
 
 	d3.json('https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json', function(error, heatData) {
 		if (error) throw error;
@@ -78,19 +86,20 @@ $(document).ready(function() {
 		console.log("cell height: "+ cellHeight);
 
 		var cards = chart.selectAll("g")
-									 .data(heatData.monthlyVariance)
-									 .enter().append("rect")
-									 .attr("title", function(d) { return `${d.year} ${d.month}`; })
-									 .attr("x", function(d) { return x(d.year); })
-									 .attr("y", function(d) { var me = new Date('2016-' + (d.month) + '-01'); return y(me); })
-									 .attr("height", cellHeight)
-									 .attr("class", function(d) { return getGridColor(baseTemp + d.variance); })
-									 .attr("width", cellWidth)
-									 .on("mouseover", function() {
-										 console.log(d3.select(this).datum());
-									 });
+									 	 .data(heatData.monthlyVariance)
+									 	 .enter().append("rect")
+									 	 .attr("title", function(d) { return `${d.year} ${d.month}`; })
+									 	 .attr("x", function(d) { return x(d.year); })
+									 	 .attr("y", function(d) { var me = new Date('2016-' + (d.month) + '-01'); return y(me); })
+									 	 .attr("height", cellHeight)
+									 	 .attr("class", function(d) { return getGridColor(baseTemp + d.variance); })
+									 	 .attr("width", cellWidth)
+									 	 .on("mouseover", function() {
+										 	 console.log(d3.select(this).datum());
+									 	 });
+											
 		buildXAxis(x);
 		buildYAxis(y);
-		});
 
+	});
 });

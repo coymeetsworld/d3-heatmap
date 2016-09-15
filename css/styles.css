@@ -8,7 +8,7 @@ path, line {
 	stroke: #fff;
 }
 
-.chart {
+#chart {
 	display: block;
 	margin: 0 auto;
 	padding: 100px;
@@ -16,11 +16,11 @@ path, line {
 	margin-top: 50px;
 	border: 1px solid white;
 }
-.chart text {
+#chart text {
 	fill: white;
 	font: 10px sans-serif;
 }
-.chart text.axisLabel {
+#chart text.axisLabel {
 	fill: white;
 	font: 18px sans-serif;
 	text-anchor: middle;
