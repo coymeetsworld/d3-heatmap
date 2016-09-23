@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var chartHeight = 650 - margin.top - margin.bottom;
 
 	var x = d3.scaleLinear().range([0, chartWidth]);
-	var y = d3.scaleTime().domain([new Date(2016,11,31), new Date(2016,0,1)]).range([chartHeight, 0]);
+	var y = d3.scaleLinear().domain([12,0]).range([chartHeight, 0]);
 
 	var chart = d3.select('#chart')
 								.attr("width", chartWidth+margin.left+margin.right)
@@ -37,9 +37,11 @@ $(document).ready(function() {
 		chart.append("g")
 				 .attr("transform", "translate(0,0)")
 				 .call(d3.axisLeft(y)
-				 				 .ticks(d3.timeMonth)
+				 				 .ticks(16)
 								 .tickSize(16,0)
-								 .tickFormat(d3.timeFormat("%B")));
+								 .tickFormat(function(d) {
+									 return monthNames[d];
+								 }));
 
 		chart.append("text")
 				 .attr("transform", "rotate(-90)")
@@ -84,13 +86,13 @@ $(document).ready(function() {
 		console.log("cell width: "+ cellWidth);
 		console.log("chart height: " + (chartHeight));
 		console.log("cell height: "+ cellHeight);
-
+		
 		var cards = chart.selectAll("g")
 									 	 .data(heatData.monthlyVariance)
 									 	 .enter().append("rect")
 									 	 .attr("title", function(d) { return `${d.year} ${d.month}`; })
 									 	 .attr("x", function(d) { return x(d.year); })
-									 	 .attr("y", function(d) { var me = new Date('2016-' + (d.month) + '-01'); return y(me); })
+									 	 .attr("y", function(d) { return y(d.month-1); })
 									 	 .attr("height", cellHeight)
 									 	 .attr("class", function(d) { return getGridColor(baseTemp + d.variance); })
 									 	 .attr("width", cellWidth)
@@ -101,6 +103,9 @@ $(document).ready(function() {
 
 												var xPos = parseFloat(d3.select(this).attr("x"));
 												var yPos = parseFloat(d3.select(this).attr("y"));
+												var width = parseFloat(d3.select(this).attr("width"));
+												var height = parseFloat(d3.select(this).attr("height"));
+												console.log("x: " + xPos + " y: " + yPos + " width: " + width + " height: " + height);
 
 												chart.append('rect')
 													.attr('class', 'tip')
@@ -117,7 +122,7 @@ $(document).ready(function() {
 												chart.append('text')
 													.attr('class','tip')
 													.html(
-														"<tspan x=" + (xPos-80) + " y=" + (yPos-30) + " class=\"tooltipDate\">" + cellData.year + " - " + monthNames[cellData.month] + "</tspan>"
+														"<tspan x=" + (xPos-80) + " y=" + (yPos-30) + " class=\"tooltipDate\">" + cellData.year + " - " + monthNames[cellData.month-1] + "</tspan>"
 														+ "<tspan x=" + (xPos-80) + " y=" + (yPos-5) + " class=\"tooltipTemperature\">" 
 															+ (baseTemp + cellData.variance).toFixed(3) + "&deg;C&nbsp;&nbsp;( " + 
 															+ cellData.variance.toFixed(3)
