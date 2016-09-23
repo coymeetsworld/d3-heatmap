@@ -18,10 +18,11 @@ $(document).ready(function() {
   /* 
 		Renders the x-axis of the graph with label.
 	*/
-	function buildXAxis(x) {
+	function buildXAxis(x, minYear, maxYear) {
+
 		chart.append("g")
 				 .attr("transform", "translate(0," + chartHeight + ")")
-				 .call(d3.axisBottom(x));
+				 .call(d3.axisBottom(x).tickArguments([(maxYear - minYear)/10, "d"]));
 
 		chart.append("text")
 				 .attr("transform", "translate(" + (chartWidth/2) + "," + (chartHeight+50) + ")")
@@ -73,8 +74,9 @@ $(document).ready(function() {
 	d3.json('https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json', function(error, heatData) {
 		if (error) throw error;
 
-		x.domain(d3.extent(heatData.monthlyVariance, function(d) { return d.year; }) );
-		//console.log("Range: " + d3.extent(heatData.monthlyVariance, function(d) { return d.year; }) );
+		var minYear = d3.min(heatData.monthlyVariance, function(d) { return d.year; });
+		var maxYear = d3.max(heatData.monthlyVariance, function(d) { return d.year; });
+		x.domain([minYear, maxYear+1]);
 
 		console.log("Number of cells: " + heatData.monthlyVariance.length);
 		var baseTemp = heatData.baseTemperature;
@@ -141,7 +143,7 @@ $(document).ready(function() {
 										   d3.select(this).attr('class', function(d) { return getGridColor(baseTemp + d.variance); });
 										 });
 
-		buildXAxis(x);
+		buildXAxis(x, minYear, maxYear);
 		buildYAxis(y);
 
 	});
