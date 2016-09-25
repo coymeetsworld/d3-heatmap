@@ -40,6 +40,10 @@ path, line {
 	font-size: 11px;
 }
 
+#chart .legendText {
+	font-size: 12px;
+}
+
 .gradient11 {
 	fill: #821a79;
 }

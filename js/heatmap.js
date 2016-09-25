@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var margin = {top: 20, right: 30, bottom: 30, left: 40}
 	var chartWidth = 1270 - margin.left - margin.right;
 	var chartHeight = 650 - margin.top - margin.bottom;
+	
 
 	var x = d3.scaleLinear().range([0, chartWidth]);
 	var y = d3.scaleLinear().domain([12,0]).range([chartHeight, 0]);
@@ -54,6 +55,30 @@ $(document).ready(function() {
 	}
 
 	/* 
+		Renders the legend for the map.
+	*/
+	function buildLegend() {
+
+		var legend = chart.append("g")
+		.attr("transform", "translate(650,75)")
+		.selectAll(".legend")
+		.data([0,2.7,3.9,5,6.1,7.2,8.3,9.4,10.5,11.6]).enter();
+		
+		legend.append("rect")
+				 	.attr("x", function(d, i) { return 55*i; })
+				 	.attr("y", chartHeight)
+				 	.attr("width", 55)
+				 	.attr("height", 20)
+ 				 	.attr("class", function(d) { return getGridColor(d); });
+		legend.append("text")
+				 .text(function(d) { return ">= " + d; })
+				 .attr("class", "legendText")
+				 .attr("x", function(d, i) { return (55*i)+5; })
+				 .attr("y", chartHeight+35);
+	}
+
+
+	/* 
 		Returns the CSS class used to fill out a cell on the heatmap. CSS class depends on temp variable passed.
 	*/
 	function getGridColor(temp) {
@@ -89,6 +114,7 @@ $(document).ready(function() {
 		console.log("chart height: " + (chartHeight));
 		console.log("cell height: "+ cellHeight);
 		
+
 		var cards = chart.selectAll("g")
 									 	 .data(heatData.monthlyVariance)
 									 	 .enter().append("rect")
@@ -145,6 +171,7 @@ $(document).ready(function() {
 
 		buildXAxis(x, minYear, maxYear);
 		buildYAxis(y);
+		buildLegend();
 
 	});
 });
