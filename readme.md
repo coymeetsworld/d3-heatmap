@@ -9,7 +9,7 @@ This project uses d3.js to display a heat map of the relative temperatures measu
 https://coymeetsworld.github.io/d3-heatmap
 
 <div align="center">
-	<img src="imgs/readme-imgs/preview.png" alt="Preview image of a d3 heatmap"/>
+	<img src="imgs/preview-imgs/preview.png" alt="Preview image of a d3 heatmap"/>
 </div>
 
 ## About
