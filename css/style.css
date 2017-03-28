@@ -9,82 +9,98 @@ path, line {
 }
 
 #chart {
+	border: 1px solid white;
 	display: block;
 	margin: 0 auto;
 	padding: 100px;
 	margin-bottom: 100px;
 	margin-top: 50px;
-	border: 1px solid white;
 }
+
 #chart text {
 	fill: white;
 	font: 10px sans-serif;
 }
-#chart text.axisLabel {
+
+#chart text.axis-label {
 	fill: white;
 	font: 18px sans-serif;
 	text-anchor: middle;
 }
 
-#chart .header1 {
+#chart .main-header {
 	font-family: Verdana;
-	font-weight: bold;
 	font-size: 24px;
+	font-weight: bold;
 }
-#chart .header2 {
+
+#chart .date-header {
 	font-family: Verdana;
 	font-size: 16px;
 }
-#chart .header3 {
+
+#chart .desc-header {
 	font-family: Verdana;
 	font-size: 11px;
 }
 
-#chart .legendText {
+.legend-text {
 	font-size: 12px;
 }
 
 .gradient11 {
 	fill: #821a79;
 }
+
 .gradient10 {
 	fill: #5b1a8a;
 }
+
 .gradient9 {
 	fill: #231a91;
 }
+
 .gradient8 {
 	fill: #195098;
 }
+
 .gradient7 {
 	fill: #18989f;
 }
+
 .gradient6 {
 	fill: #17a765;
 }
+
 .gradient5 {
 	fill: #16ae1b;
 }
 .gradient4 {
 	fill: #61b515;
 }
+
 .gradient3 {
 	fill: #babc13;
 }
+
 .gradient2 {
 	fill: #c36a11;
 }
+
 .gradient1 {
 	fill: #cb1012;
 }
+
 .highlight {
 	cursor: pointer;
 	fill: #fff;
 }
-.tooltipDate {
-	font-weight: bold;
+
+.tooltip-date {
 	font-size: 16px;
+	font-weight: bold;
 }
-.tooltipTemperature {
+
+.tooltip-temperature {
 	font-size: 14px;
 }

@@ -1,4 +1,3 @@
-$(document).ready(function() {
 
   var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var heatRange = [0, 2.7, 3.9, 5, 6.1, 7.2, 8.3, 9.4, 10.5, 11.6];
@@ -28,7 +27,7 @@ $(document).ready(function() {
 
 		chart.append("text")
 				 .attr("transform", "translate(" + (chartWidth/2) + "," + (chartHeight+50) + ")")
-				 .attr("class", "axisLabel")
+				 .attr("class", "axis-label")
 				 .text("Years");
 	}
 
@@ -50,7 +49,7 @@ $(document).ready(function() {
 				 .attr("transform", "rotate(-90)")
 				 .attr("y", -125)
 				 .attr("x", chartHeight/-2+50)
-				 .attr("class", "axisLabel")
+				 .attr("class", "axis-label")
 				 .attr("dy", "2em")
 				 .text("Months");
 	}
@@ -80,7 +79,7 @@ $(document).ready(function() {
 
 		legend.append("text")
 				 .text(function(d) { return ">= " + d; })
-				 .attr("class", "legendText")
+				 .attr("class", "legend-text")
 				 .attr("x", function(d, i) { return (legendElemWidth*i)+legendElemTextMarginLeft; })
 				 .attr("y", chartHeight+legendElemTextMarginTop);
 	}
@@ -158,8 +157,8 @@ $(document).ready(function() {
 												chart.append('text')
 													.attr('class','tip')
 													.html(
-														"<tspan x=" + (xPos-80) + " y=" + (yPos-30) + " class=\"tooltipDate\">" + cellData.year + " - " + monthNames[cellData.month-1] + "</tspan>"
-														+ "<tspan x=" + (xPos-80) + " y=" + (yPos-5) + " class=\"tooltipTemperature\">" 
+														"<tspan x=" + (xPos-80) + " y=" + (yPos-30) + " class=\"tooltip-date\">" + cellData.year + " - " + monthNames[cellData.month-1] + "</tspan>"
+														+ "<tspan x=" + (xPos-80) + " y=" + (yPos-5) + " class=\"tooltip-temperature\">" 
 															+ (baseTemp + cellData.variance).toFixed(3) + "&deg;C&nbsp;&nbsp;( " + 
 															+ cellData.variance.toFixed(3)
 														+ " )</tspan>")
@@ -182,4 +181,3 @@ $(document).ready(function() {
 		buildLegend();
 
 	});
-});
