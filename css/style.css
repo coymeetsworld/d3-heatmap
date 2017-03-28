@@ -1,106 +1,106 @@
 body {
-	background-color: black;
-	color: white;
+  background-color: black;
+  color: white;
 }
 
 path, line {
-	fill: none;
-	stroke: #fff;
+  fill: none;
+  stroke: #fff;
 }
 
 #chart {
-	border: 1px solid white;
-	display: block;
-	margin: 0 auto;
-	padding: 100px;
-	margin-bottom: 100px;
-	margin-top: 50px;
+  border: 1px solid white;
+  display: block;
+  margin: 0 auto;
+  padding: 100px;
+  margin-bottom: 100px;
+  margin-top: 50px;
 }
 
 #chart text {
-	fill: white;
-	font: 10px sans-serif;
+  fill: white;
+  font: 10px sans-serif;
 }
 
 #chart text.axis-label {
-	fill: white;
-	font: 18px sans-serif;
-	text-anchor: middle;
+  fill: white;
+  font: 18px sans-serif;
+  text-anchor: middle;
 }
 
 #chart .main-header {
-	font-family: Verdana;
-	font-size: 24px;
-	font-weight: bold;
+  font-family: Verdana;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 #chart .date-header {
-	font-family: Verdana;
-	font-size: 16px;
+  font-family: Verdana;
+  font-size: 16px;
 }
 
 #chart .desc-header {
-	font-family: Verdana;
-	font-size: 11px;
+  font-family: Verdana;
+  font-size: 11px;
 }
 
 .legend-text {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 .gradient11 {
-	fill: #821a79;
+  fill: #821a79;
 }
 
 .gradient10 {
-	fill: #5b1a8a;
+  fill: #5b1a8a;
 }
 
 .gradient9 {
-	fill: #231a91;
+  fill: #231a91;
 }
 
 .gradient8 {
-	fill: #195098;
+  fill: #195098;
 }
 
 .gradient7 {
-	fill: #18989f;
+  fill: #18989f;
 }
 
 .gradient6 {
-	fill: #17a765;
+  fill: #17a765;
 }
 
 .gradient5 {
-	fill: #16ae1b;
+  fill: #16ae1b;
 }
 .gradient4 {
-	fill: #61b515;
+  fill: #61b515;
 }
 
 .gradient3 {
-	fill: #babc13;
+  fill: #babc13;
 }
 
 .gradient2 {
-	fill: #c36a11;
+  fill: #c36a11;
 }
 
 .gradient1 {
-	fill: #cb1012;
+  fill: #cb1012;
 }
 
 .highlight {
-	cursor: pointer;
-	fill: #fff;
+  cursor: pointer;
+  fill: #fff;
 }
 
 .tooltip-date {
-	font-size: 16px;
-	font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .tooltip-temperature {
-	font-size: 14px;
+  font-size: 14px;
 }
