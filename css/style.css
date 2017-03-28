@@ -104,3 +104,21 @@ path, line {
 .tooltip-temperature {
   font-size: 14px;
 }
+
+/* Link to GitHub */
+#my-about {
+  bottom: 0.5em;
+  right: 3em;
+  font-size: 1em;
+  position: fixed;
+}
+
+a,
+a:visited{
+  font-size: 0.8em;
+  color:#fff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
